@@ -40,7 +40,9 @@ const todoSlice = createSlice({
     },
     updateTodoSuccess: (state, action) => {
       state.loading = false;
-      const index = state.todos.findIndex(todo => todo.id == action.payload.id);
+      const index = state.todos.findIndex(
+        todo => todo.id === action.payload.id,
+      );
       state.todos[index] = action.payload;
     },
     updateTodoFailure: (state, action) => {

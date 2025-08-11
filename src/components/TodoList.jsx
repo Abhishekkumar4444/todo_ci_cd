@@ -29,7 +29,9 @@ const TodoList = () => {
   }, [dispatch]);
 
   const handleAddTodo = () => {
-    if (!todoText.trim()) return; // Early return for empty input
+    if (!todoText.trim()) {
+      return;
+    } // Early return for empty input
     if (todoText.trim()) {
       dispatch(addTodoRequest({title: todoText, completed: false}));
       setTodoText('');
@@ -55,10 +57,10 @@ const TodoList = () => {
 
   const renderTodoItem = ({item}) => (
     <View style={styles.todoItem}>
-      <View style={{flex: 2}}>
+      <View style={styles.todoItemTextContainer}>
         <Text>{item?.title}</Text>
       </View>
-      <View style={{flexDirection: 'row', flex: 1}}>
+      <View style={styles.todoItemButtonsContainer}>
         <Button
           title="Edit"
           onPress={() => {
@@ -66,7 +68,7 @@ const TodoList = () => {
             setEditingTodo(item);
           }}
         />
-        <View style={{left: 5}}>
+        <View style={styles.deleteButtonContainer}>
           <Button
             title="Delete"
             onPress={() => handleDeleteTodo(item.id)}
@@ -92,13 +94,8 @@ const TodoList = () => {
       />
 
       {loading ? (
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            top: 300,
-          }}>
-          <Text style={{fontSize: 28, fontWeight: '700'}}>Loading.....</Text>
+        <View style={styles.loadingContainer}>
+          <Text style={styles.loadingText}>Loading.....</Text>
         </View>
       ) : (
         <FlatList
@@ -108,13 +105,7 @@ const TodoList = () => {
         />
       )}
       {error ? (
-        <View
-          testID="error-view"
-          style={{
-            justifyContent: 'center',
-            alignSelf: 'center',
-            marginTop: 10,
-          }}>
+        <View testID="error-view" style={styles.errorContainer}>
           <Text style={styles.error}>Error: {error}</Text>
         </View>
       ) : null}
@@ -140,6 +131,30 @@ const styles = StyleSheet.create({
   },
   error: {
     color: 'red',
+  },
+  todoItemTextContainer: {
+    flex: 2,
+  },
+  todoItemButtonsContainer: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  deleteButtonContainer: {
+    left: 5,
+  },
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 300,
+  },
+  loadingText: {
+    fontSize: 28,
+    fontWeight: '700',
+  },
+  errorContainer: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 10,
   },
 });
 
