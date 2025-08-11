@@ -1,0 +1,11 @@
+src/
+│
+├── components/
+│   └── TodoList.js
+├── redux/
+│   ├── store.js
+│   ├── todoSlice.js
+│   ├── rootSaga.js
+│   ├── sagas.js
+│   └── rootReducer.js
+└── App.js
