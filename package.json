@@ -10,7 +10,8 @@
     "format": "prettier --check src && prettier --write src",
     "start-android": "npm-run-all -p start android",
     "test": "jest --clearCache && jest",
-    "clearCache": "npm cache clean --force"
+    "clearCache": "npm cache clean --force",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
@@ -44,7 +45,8 @@
     "prettier": "2.8.8",
     "react-test-renderer": "18.3.1",
     "redux-saga-test-plan": "^4.0.6",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "husky": "^8.0.0"
   },
   "engines": {
     "node": ">=18"
